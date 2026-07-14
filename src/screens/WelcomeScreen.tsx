@@ -1,6 +1,15 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type RootStackParamList = {
+  Welcome: undefined;
+  Login: undefined;
+};
 
 export default function WelcomeScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -11,11 +20,17 @@ export default function WelcomeScreen() {
       </View>
 
       <View style={styles.buttons}>
-        <TouchableOpacity style={styles.buttonPrimary}>
+        <TouchableOpacity
+          style={styles.buttonPrimary}
+          onPress={() => navigation.navigate('Login')}
+        >
           <Text style={styles.buttonPrimaryText}>I am a Commuter</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonSecondary}>
+        <TouchableOpacity
+          style={styles.buttonSecondary}
+          onPress={() => navigation.navigate('Login')}
+        >
           <Text style={styles.buttonSecondaryText}>I am a Driver</Text>
         </TouchableOpacity>
       </View>
